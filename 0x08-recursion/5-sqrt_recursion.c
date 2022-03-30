@@ -1,41 +1,32 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
- * is_squre_root - determines the square root of
- * @j: an input value
- * @i: input value
+ * do_sqrt_recursion - needs the extra parameter r to work
+ * @n: the natural number whose root to find
+ * @r: the root iterator
  *
- * Description: determines the square root
- * Return: returns the input val
+ * Return: the natural root of n or -1 if not found
  */
-
-int is_square_root(int i, int j)
+int do_sqrt_recursion(int n, int r)
 {
-	if (j * j > i)
-	{
+	if (r * r == n)
+		return (r);
+	else if (r * r > n)
 		return (-1);
-	}
-	if (j * j == i)
-	{
-		return (j);
-	}
-	return (is_square_root(i, j + 1));
+	return (do_sqrt_recursion(n, r + 1));
 }
 
 /**
- * _sqrt_recursion - returns square root
- * @n: input size
+ * _sqrt_recursion - returns the square root of x
+ * @n: the number to root
  *
- * Description: If n does not have a natural square root,
- * the function should return -1
- * Return: returns the natural square root of a number
+ * Return: the integer result, -1 on error
  */
-
 int _sqrt_recursion(int n)
 {
 	if (n < 0)
-	{
 		return (-1);
-	}
-	return (is_square_root(n, 1));
+
+	return (do_sqrt_recursion(n, 0));
 }
